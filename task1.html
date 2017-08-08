@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>九宫格</title>
+ <style>
+	 div{
+		 width:190px;
+		 height:190px;
+		 background:#FFA600;
+		 float:left;
+		 margin:10px;
+		 border-radius: 10px;
+	 }
+	 body{
+		 width:700px;
+		 margin:0 auto;
+	 }
+	 button{
+		 width:630px;
+		 height:60px;
+		 background:#FFF;
+		 border:1px solid #ffa600;
+		 border-radius:10px;
+		 margin-bottom: 10px;
+		 color:#ffa600;
+		 font-size: 20px;
+	 }
+	 button:hover{
+	 background:#FFA600;
+		 cursor: pointer;
+		 color: #fff;
+	 }
+ </style>
+ <script src="../../001/jquery.min.js"></script>
+</head>
+<body>
+	 <div></div>
+	 <div></div>
+	 <div></div>
+	 <div></div>
+	 <div></div>
+	 <div></div>
+	 <div></div>
+	 <div></div>
+	 <div></div>
+	 <button id="btnone">开始闪</button>
+	 <button id="btntwo">结束闪</button>
+	 <script>
+		var ds=document.getElementsByTagName('div');
+		btnone.onclick=function(){//点击开始
+			 sobj=setInterval(function(){//使用定时器
+				 start();//调用函数
+			 },1000)//设置时间
+		}
+
+
+		btntwo.onclick=function(){//停止按钮的
+			 for(i=0;i<ds.length;i++){//循环
+				 ds[i].style.background="#FFA600";//遍历清除颜色
+			 }
+			 clearInterval(sobj);//停止定时器
+		}
+
+
+		function start(){
+			 for(var i=0;i<ds.length;i++){//每次随机颜色时遍历将背景设置好
+				 ds[i].style.background="#FFA600";
+			 }
+			 var arr=new Array(3);//创建数组容纳随机数     格子位置
+			 var arr1=new Array(3);                   //颜色位置
+			 for(var i=0;i<arr.length;i++){//创建第一组数组
+				 var a=Math.floor(Math.random()*9); 
+//				 console.log(a);
+				 if(i==0){//第一个数字直接导入数组
+					 arr[i]=a;
+				 }else{
+					 for(var j=0;j<i;j++){//第二个与第三个数字进行判断
+						 if(a==arr[j]){//如果重复从新开始
+							 i--
+						 }else{
+							 arr[i]=a;
+						 }
+				 }
+				 }
+			 }
+
+			for(var i=0;i<arr1.length;i++){
+				a=Math.floor(Math.random()*256);
+				b=Math.floor(Math.random()*256);
+				c=Math.floor(Math.random()*256);
+				d='rgb('+a+','+b+','+c+')';
+				arr1[i]=d;
+				}
+
+			 for(var i=0;i<arr.length;i++){
+				 ds[arr[i]].style.background=arr1[i];//将随机的颜色给随机的地址
+			 }
+		}	
+
+	 </script>
+</body>
+</html>
