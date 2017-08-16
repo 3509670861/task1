@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=diece-width,intal-scale=1,maxmum-scale=1,user-scalable=no">
+<title>无标题文档</title>
+<link rel="stylesheet" href="../bs/css/bootstrap.css">
+<script src="../bs/js/jquery.min.js"></script>
+<script src="../bs/js/bootstrap.js"></script>
+<link rel="stylesheet" href="view.css">
+
+</head>
+
+<body>
+<table>
+	<tr>
+		<td>
+			<span class="glyphicon glyphicon-chevron-left pull-left"></span>
+		</td>
+		<td>
+			查看身份
+		</td>
+		<td>
+			<a href="#mymodal" class="close" data-toggle="modal">&times;</a>
+		</td>
+	</tr>
+</table>
+	
+	
+	<div id="mymodal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body">
+				<h4>结束本轮游戏吗？</h4>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-primary" data-dismiss="modal">取消</button>
+					<button class="btn btn-primary save">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+<div class="content">
+	<span class="xh">1</span>
+	<div class="div2">
+		<img src="king.png" alt="" class="img1">
+		<img src="kill.png" alt="" class="img2">
+		<p class="p1">2354</p>
+	</div>
+	<div class="bottom">查看1号身份</div>
+</div>
+</body>
+<script>
+	//模态框设置
+	$('.save').click(function(){
+		//把modal隐藏
+		$('#mymodal').modal('hide');
+		//跳转到开始页面
+		window.location.href='start.html';
+	});
+	
+	//点击左上角图标返回玩家配比界面
+	$('.glyphicon').click(function(){
+		window.location.href='players.html';
+	});
+	
+	
+	i=1;
+	$('.bottom').click(function(){
+//		alert(1);
+		if(i==12){
+			//y为输入玩家数量,这里假设y=12
+			
+			$('.img1').hide();
+			$('.img2,.p1').show();
+			//还有杀手和平民的身份显示
+			this.innerHTML='法官查看';
+			$('.xh').html(i);
+//			$('.p1').html(5768);
+			i++;
+		}else if(this.innerHTML=='查看'+i+'号身份'){
+			$('.img1').hide();
+			$('.img2,.p1').show();
+//			$('.p1').html(i-1);
+			//还有杀手和平民的身份显示
+			this.innerHTML='隐藏并传递给'+(i+1)+'号';
+			
+//			i++;
+		}else if(i==13){
+//			alert('rfdh');
+			window.location.href='judge.html';
+		}else if(this.innerHTML='隐藏并传递给'+(i+1)+'号'){
+			$('.img2,.p1').hide();
+			$('.img1').show();
+			this.innerHTML='查看'+(i+1)+'号身份';
+			$('.xh').html(i+1);
+			i++;
+		}
+		
+	});
+</script>
+</html>
